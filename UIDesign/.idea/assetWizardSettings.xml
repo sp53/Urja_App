@@ -19,8 +19,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundLayerName" value="ic_launcher_backgroundvib2" />
-                                      <entry key="foregroundImage" value="$USER_HOME$/Pictures/vib2.png" />
-                                      <entry key="foregroundLayerName" value="ic_launcher_foregroundvib2" />
+                                      <entry key="foregroundImage" value="$USER_HOME$/Pictures/vib4.png" />
+                                      <entry key="foregroundLayerName" value="ic_launcher_foregroundvib4" />
                                       <entry key="outputName" value="leafy" />
                                     </map>
                                   </option>
