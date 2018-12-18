@@ -1,6 +1,7 @@
 package com.example.deltasp.uidesign;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -22,6 +23,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private ArrayList<String> mnames=new ArrayList<>();
     private ArrayList<String> mImageURLs=new ArrayList<>();
     private Context mcontext;
+    private Context maincontext;
 
 
     public RecyclerViewAdapter(Context context,ArrayList<String> names,ArrayList<String> imgurls)
@@ -29,6 +31,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         mnames=names;
         mImageURLs=imgurls;
         mcontext=context;
+    }
+
+    public void receiveContext(Context con)
+    {
+        maincontext=con;
     }
 
 
@@ -51,8 +58,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: clicked on an image: "+ mnames.get(position));
-                Toast.makeText(mcontext,mnames.get(position),Toast.LENGTH_SHORT).show();
+                Intent intnt=new Intent(maincontext,Main2Activity.class);
+                maincontext.startActivity(intnt);
             }
         });
 
