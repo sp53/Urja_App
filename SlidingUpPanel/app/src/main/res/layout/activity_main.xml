@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF">
+
+    <include
+        android:id="@+id/tlbr"
+        layout="@layout/toolbar"
+        tools:ignore="InvalidId" />
+
+    <com.sothree.slidinguppanel.SlidingUpPanelLayout
+        android:id="@+id/slidelayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tlbr"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/layout_bg"
+        android:gravity="bottom"
+        app:umanoDragView="@id/dragview"
+        app:umanoFadeColor="@android:color/transparent"
+        app:umanoOverlay="true"
+        app:umanoPanelHeight="106dp"
+        app:umanoParallaxOffset="0dp"
+        app:umanoShadowHeight="0dp"
+        app:umanoScrollableView="@style/Base.Widget.AppCompat.ListView"
+        tools:context=".MainActivity">
+
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/layout_bg2">
+
+
+
+            <TextView
+                android:id="@+id/wind"
+                android:layout_width="182dp"
+                android:layout_height="55dp"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/abeezee"
+                android:text="Wind"
+                android:textColor="@android:color/background_light"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.685"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.19" />
+
+            <TextView
+                android:id="@+id/solar"
+                android:layout_width="182dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/abeezee"
+                android:text="Solar"
+                android:textColor="@android:color/background_light"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.691"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/wind"
+                app:layout_constraintVertical_bias="0.032" />
+
+            <TextView
+                android:id="@+id/reserve"
+                android:layout_width="182dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/abeezee"
+                android:text="Reserve"
+                android:textColor="@android:color/background_light"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.694"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/solar"
+                app:layout_constraintVertical_bias="0.051" />
+
+            <TextView
+                android:id="@+id/total"
+                android:layout_width="182dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/abeezee"
+                android:text="Total"
+                android:textColor="@android:color/background_light"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.69"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/reserve"
+                app:layout_constraintVertical_bias="0.033" />
+
+            <TextView
+                android:id="@+id/demand"
+                android:layout_width="182dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/abeezee"
+                android:text="Demand"
+                android:textColor="@android:color/background_light"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.694"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/total"
+                app:layout_constraintVertical_bias="0.07" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/abeezee"
+                android:text="Daily Stats"
+                android:gravity="center"
+                android:textColor="@android:color/background_light"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/wind"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.131" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="12dp"
+                app:layout_constraintBottom_toTopOf="@+id/solar"
+                app:layout_constraintEnd_toStartOf="@+id/wind"
+                app:layout_constraintHorizontal_bias="0.598"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView9"
+                app:layout_constraintVertical_bias="0.542"
+                app:srcCompat="@drawable/wind" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toTopOf="@+id/reserve"
+                app:layout_constraintEnd_toStartOf="@+id/solar"
+                app:layout_constraintHorizontal_bias="0.614"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView"
+                app:srcCompat="@drawable/sun5" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/total"
+                app:layout_constraintEnd_toStartOf="@+id/reserve"
+                app:layout_constraintHorizontal_bias="0.587"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                app:srcCompat="@drawable/reserve" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="23dp"
+                android:layout_height="19dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/demand"
+                app:layout_constraintEnd_toStartOf="@+id/total"
+                app:layout_constraintHorizontal_bias="0.61"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView3"
+                app:layout_constraintVertical_bias="0.439"
+                app:srcCompat="@drawable/total" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="27dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/demand"
+                app:layout_constraintHorizontal_bias="0.628"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView4"
+                app:layout_constraintVertical_bias="0.195"
+                app:srcCompat="@drawable/demand" />
+
+
+
+        </android.support.constraint.ConstraintLayout>
+
+        <include
+            layout="@layout/layout_drag"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </com.sothree.slidinguppanel.SlidingUpPanelLayout>
+</RelativeLayout>

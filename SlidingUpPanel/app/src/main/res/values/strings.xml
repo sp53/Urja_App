@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Urja App</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dailystat">Daily Stats</string>
+    <string-array name="cityarray">
+        <item>Dehradun</item>
+        <item>Kanpur</item>
+        <item>Delhi</item>
+        <item>Mumbai</item>
+    </string-array>
+</resources>

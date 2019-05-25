@@ -12,6 +12,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,90 +24,121 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
-    String json_string;
-    private ArrayList<String> mnames = new ArrayList<>();
+public class MainActivity extends AppCompatActivity
+{
 
-    private ArrayList<String> mImageURLs = new ArrayList<>();
-    int count = 0;
+    JSONObject jsobject;
+    JSONArray jsarray;
+    String indata = "";
+    String JSON_STRING;
+    String jsdata;
 
-    public void callfn(View v) {
-
-    }
+    List<List<String>> x=new ArrayList<List<String>>();
+    List<List<String>> y=new ArrayList<List<String>>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final ImageView imgvw = (ImageView) findViewById(R.id.vibrance);
-        imgvw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                count++;
-                if (count % 4 == 1) {
-                    imgvw.setImageResource(R.mipmap.ic_launcher_foregroundvib2);
-                } else if (count % 4 == 2) {
-                    imgvw.setImageResource(R.mipmap.ic_launcher_foregroundvib);
-                }
-                else if (count % 4 == 3)
-                {
-                    imgvw.setImageResource(R.mipmap.ic_launcher_foregroundvib3);
-                }
-                else
-                {
-                    imgvw.setImageResource(R.mipmap.ic_launcher_foregroundvib4);
-                }
 
-            }
-        });
-
-        getImages();
-    }
-
-    private void getImages() {
-
-
-        mImageURLs.add("https://i.imgur.com//hu3XwNF.jpg");
-        mnames.add("Event 1");
-
-        mImageURLs.add("https://i.imgur.com//w4WcoU2.png");
-        mnames.add("Event 2");
-
-        mImageURLs.add("https://i.imgur.com//7Nb3mKU.jpg");
-        mnames.add("Event 3");
-
-        mImageURLs.add("https://i.imgur.com//KF3SaJu.jpg");
-        mnames.add("Event 4");
-
-
-        mImageURLs.add("https://i.imgur.com//qRBPjQs.jpg");
-        mnames.add("Event 5");
-
-        mImageURLs.add("https://i.imgur.com//PBzvumx.jpg");
-        mnames.add("Event 6");
-
-
-        mImageURLs.add("https://i.imgur.com/GFtwsEs.png");
-        mnames.add("Event 7");
-
-        mImageURLs.add("https://i.imgur.com//IBLKZ1e.jpg");
-        mnames.add("Event 8");
-
-        mImageURLs.add("https://i.imgur.com//l6EYwyk.jpg");
-        mnames.add("Event 9");
-
-        initRecyclerView();
+        getJSON();
     }
 
 
-    private void initRecyclerView() {
+
+    private void initRecyclerView()
+    {
+
+        Toast.makeText(this,""+x.size(),Toast.LENGTH_SHORT).show();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         RecyclerView recyclerview = findViewById(R.id.recyclerview);
         recyclerview.setLayoutManager(layoutManager);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, mnames, mImageURLs);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, x, y);
         adapter.receiveContext(MainActivity.this);
         recyclerview.setAdapter(adapter);
 
     }
-}
+
+    // json data
+    public void getJSON() {
+        new BackgroundTask().execute();
+    }
+
+    class BackgroundTask extends AsyncTask<Void, Void, String> {
+        String json_url;
+
+        @Override
+        protected void onPreExecute() {
+            json_url = "http://dbms-com.stackstaging.com/graph_data.php";
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+
+            try {
+                URL url = new URL(json_url);
+                HttpURLConnection httpURLConnection;
+                httpURLConnection = (HttpURLConnection) url.openConnection();
+                BufferedReader br = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+                StringBuilder sb = new StringBuilder();
+                while ((JSON_STRING = br.readLine()) != null) {
+                    sb.append(JSON_STRING + "\n");
+                }
+                br.close();
+                httpURLConnection.disconnect();
+                return sb.toString().trim();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+
+            indata = result;
+
+            try {
+                jsobject = new JSONObject(indata);
+                jsarray = jsobject.getJSONArray("graph");
+                int count = 0;
+
+                while (count < jsarray.length()) {
+                    int count2=0;
+                    List<String> xx=new ArrayList<>();
+                    List<String> yy=new ArrayList<>();
+
+                    while(count2<10) {
+                        JSONObject jo = jsarray.getJSONObject(count);
+                        xx.add(jo.getString("year"));
+                        yy.add(jo.getString("growth"));
+
+                        count++;
+                        count2++;
+                    }
+                    x.add(xx);
+                    y.add(yy);
+                }
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            initRecyclerView();
+
+        }
+    }
+    }
+
+
